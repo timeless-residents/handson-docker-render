@@ -1,9 +1,8 @@
-# Node.js アプリケーション用Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
 
-# package.jsonとpackage-lock.jsonをコピー
+# パッケージファイルをコピー
 COPY package*.json ./
 
 # 依存関係のインストール
@@ -12,8 +11,9 @@ RUN npm install
 # アプリケーションのソースをコピー
 COPY . .
 
-# ビルド（必要な場合）
-# RUN npm run build
+# 環境変数の設定
+ENV PORT=3000
+ENV NODE_ENV=production
 
 EXPOSE 3000
 
